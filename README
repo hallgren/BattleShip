@@ -1,4 +1,87 @@
-test
+BattleShip Engine
 
-from computer
+My first experience with Ruby
+
+Battle ship
+Setup is based on the court size from http://en.wikipedia.org/wiki/Battleship_(game) 10x10
+and also the amount and size of ships.
+
+aircraft carrier	
+5
+battleship	
+4
+destroyer	
+3
+submarine	
+3
+patrol boat	
+2
+
+# Setup ship "aircraft carrier 5" "battleship 4" "destroyer 3" "submarine 3" "patrol boat 2"
+# 50r 24u 15r 94u 89r
+# Will put the ships like this in the matrix
+
+# Where the first number represent the start position
+# on X and the secound number the start Y position.
+
+# The following character describe the direction the ship
+# will be layed out.
+
+    # r => right
+    # d => down
+    #
+    #   0123456789
+    #  0     @@@@@
+    #  1  @
+    #  2  @      @
+    #  3  @      @
+    #  4  @      @
+    #  5 @@@
+    #  6
+    #  7
+    #  8
+    #  9        @@
+
+The game Engine has the following methods available
+
+setupplayers(inputone, inputtwo)
+nextmove()
+move(player, x,y)
+
+
+setupplayers(inputone, inputtwo)
+
+Setup the players ships according to the above descripton.
+
+Return value are a two sized array holding the result from the creation of the two players.
+
+["",""] - Ok, the engine is setup for the game.
+["EngineWrongState","EngineWrongState"] - The engine was in the wrong state for this request.
+["InputInvalid",""] - Player ones input was not correct.
+["","ShipOutOfRange"] - Player two has entered whip positions that is out of the coursts range.
+["","ShipOnSamePosition"] - Player two has ships that are on the same coordinate.
+
+nextmove()
+
+Returns
+
+0  - Player one has the next move
+1  - Player two has the next move
+-1 - The engine is in the wrong state to hadle any move
+
+move(player, x,y)
+
+Player puts a bomb at coordinate (x,y)
+
+Returns
+
+-1 - The engine is in the wrong state
+-2 - Wrong player is moving
+-3 - (x,y) coordinate out side courts range
+-4 - bomb coordinate is already used.
+0  - miss
+1  - hit
+2  - hit and ship sank
+3  - All ships are destroyed
+
 
