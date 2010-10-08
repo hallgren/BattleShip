@@ -122,6 +122,22 @@ module Engine
       end
     end
 
+    def getbombs(player)
+      return -1 unless @enginestate == 1
+      return -2 unless (player == 0 || player == 1)
+
+      return @bombpositions[player]
+    end
+
+    def getships(player)
+      return -1 unless @enginestate == 1
+      return -2 unless (player == 0 || player == 1)
+
+      return @shipsplayerone if player == 0
+      return @shipsplayertwo
+
+    end
+
     private
 
     def checkifallshipsisdestroyed()

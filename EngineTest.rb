@@ -122,4 +122,41 @@ class NewClassTest < Test::Unit::TestCase
 
   end
 
+  def test_can_get_correct_bomb_positions
+    a = Engine::Game.new()
+    a.setupplayers("50r 24u 15r 94u 79r", "50r 24u 15r 94u 89r")
+
+    a.move(0,0,0)
+    a.move(1,1,1)
+    a.move(0,2,2)
+    a.move(1,4,5)
+    a.move(0,5,6)
+
+    assert_equal([[0,0],[2,2],[5,6]], a.getbombs(0))
+    assert_equal([[1,1],[4,5]],a.getbombs(1))
+
+  end
+
+  def test_can_get_correct_ship_positions
+    a = Engine::Game.new()
+    a.setupplayers("50r 24u 15r 94u 79r", "50r 24u 15r 94u 89r")
+
+    shipsplayerone = a.getships(0)
+
+    shipsplayerone.each_with_index { |value,i|
+      case i
+      when 0
+        assert_equal([[5, 0], [6, 0], [7, 0], [8, 0], [9, 0]], value[1])
+      when 1
+        assert_equal([[2, 4], [2, 3], [2, 2], [2, 1]], value[1])
+      when 2
+        assert_equal([[1, 5], [2, 5], [3, 5]], value[1])
+      when 3
+        assert_equal([[9, 4], [9, 3], [9, 2]], value[1])
+      when 4
+        assert_equal([[7, 9], [8, 9]], value[1])
+      end
+    }
+  end
+
 end
