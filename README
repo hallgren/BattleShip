@@ -47,6 +47,8 @@ The game Engine has the following methods available
 setupplayers(inputone, inputtwo)
 nextmove()
 move(player, x,y)
+getbombs(player)
+getships(player)
 
 
 setupplayers(inputone, inputtwo)
@@ -84,4 +86,10 @@ Returns
 2  - hit and ship sank
 3  - All ships are destroyed
 
+getboms(player)
 
+Returns the bomb coordinate the player has put on the gmae courte.
+
+getships(player)
+
+Returns the ships the player setup in the setupplayer method
